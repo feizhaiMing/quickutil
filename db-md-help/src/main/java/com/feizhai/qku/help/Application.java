@@ -24,7 +24,7 @@ public class Application {
     private static Map<String,  HashSet<String>> params;
 
     /**
-     * 构建数据库连接
+     * 初始化配置
      */
     public static void init() {
         // 配置文件名

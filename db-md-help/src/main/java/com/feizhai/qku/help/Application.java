@@ -27,7 +27,9 @@ public class Application {
      * 构建数据库连接
      */
     public static void init() {
+        // 配置文件名
         fileName = "db-md-help.md";
+        // 配置数据库和表
         params = mapBuild();
         try {
             Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
@@ -99,16 +101,16 @@ public class Application {
                 List<Columns> columnList = columnsMapper.getAllColumns(tableName, dbName);
                 String content = "";
                 for(Columns columns: columnList){
-                    content = "| " + columns.getColumnComment() + "   | " + columns.getColumnName() + "  |   " +
-                            columns.getColumnType() + "   |  " + columns.getIsNullable().substring(0,1) + "   |";
+                    content = "|" + columns.getColumnComment() + "|" + columns.getColumnName() + "|" +
+                            columns.getColumnType() + "|" + columns.getIsNullable().substring(0,1) + "|";
                     if(columns.getColumnKey() != null && "".equals(columns.getColumnKey())) {
                         if("PRI".equals(columns.getColumnKey())) {
-                            content += "  PK  | 主键 |";
+                            content += "PK|主键|";
                         }else{
-                            content += "    |  |";
+                            content += "  |  |";
                         }
                     }else{
-                        content += "    |  |";
+                        content += "  |  |";
                     }
                     fileWriter.lineWriter(content);
                 }
